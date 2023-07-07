@@ -1,0 +1,3 @@
+.vscode
+groupchat/migrations
+users/migrations
