@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 from users.models import CustomUser
@@ -23,7 +23,6 @@ def is_user_admin(request):
         return is_admin
             
 class CreateUserAPIView(APIView):
-    permission_classes = (IsAuthenticated,)
     
     def post(self, request):
         """
@@ -44,7 +43,6 @@ class CreateUserAPIView(APIView):
             return JsonResponse({"message":"401"},status=status.HTTP_401_UNAUTHORIZED)
     
 class UpadteUserAPIView(APIView):
-    permission_classes = (IsAuthenticated,)
     
     def put(self, request, pk):
         """
@@ -78,7 +76,6 @@ class UpadteUserAPIView(APIView):
 
 class MyTokenObtainPairView(TokenObtainPairView):
      
-     permission_classes = (AllowAny,)  
      def post(self, request, *args, **kwargs):
         '''Customize the token response with user role
         
@@ -103,7 +100,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
         
 
 class LogoutView(APIView):
-    permission_classes = (IsAuthenticated,)
+
     def post(self, request):
         '''
         Logout a user

@@ -2,7 +2,6 @@ import json
 from rest_framework.views import APIView
 from django.http import HttpResponse, JsonResponse
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import AccessToken
 from groupchat.models import Group, Message
 from groupchat.serializers import GroupSerializer, MessageSerializer
@@ -25,7 +24,6 @@ def get_logged_in_user(request):
     return user_id
 
 class CreateGroupView(APIView):
-    permission_classes = (IsAuthenticated,)
 
     def post(self, request):
         """
@@ -50,7 +48,6 @@ class CreateGroupView(APIView):
             return JsonResponse({"message":"401"},status=status.HTTP_401_UNAUTHORIZED)
         
 class DeleteGroupView(APIView):
-    permission_classes = (IsAuthenticated,)
     
     def delete(self, request, group_id):
         """
@@ -76,7 +73,6 @@ class DeleteGroupView(APIView):
             return JsonResponse({"message":"401"},status=status.HTTP_401_UNAUTHORIZED)
         
 class SearchGroupView(APIView):
-    permission_classes = (IsAuthenticated,)
     
     def get(self, request, group_id):
         """
@@ -112,7 +108,6 @@ class SearchGroupView(APIView):
             return JsonResponse({"message":"401"},status=status.HTTP_401_UNAUTHORIZED)
         
 class AddMemberView(APIView):
-    permission_classes = (IsAuthenticated,)
     
     def post(self, request, group_id):
         """
@@ -142,7 +137,6 @@ class AddMemberView(APIView):
             return JsonResponse({"message":"401"},status=status.HTTP_401_UNAUTHORIZED)
         
 class SearchMemberView(APIView):
-    permission_classes = (IsAuthenticated,)
     
     def get(self, request, group_id):
         """
@@ -174,7 +168,6 @@ class SearchMemberView(APIView):
 
 
 class SendMessageView(APIView):
-    permission_classes = (IsAuthenticated,)
     
     def post(self, request, group_id):
         """
@@ -205,7 +198,6 @@ class SendMessageView(APIView):
             return JsonResponse({"message":"401"},status=status.HTTP_401_UNAUTHORIZED)
 
 class GetGroupMessagesView(APIView):
-    permission_classes = (IsAuthenticated,)
     
     def get(self, request, group_id):
         """
@@ -244,7 +236,6 @@ class GetGroupMessagesView(APIView):
         
 
 class LikeMessageView(APIView):
-    permission_classes = (IsAuthenticated,)
     
     def post(self, request, message_id):
         """
@@ -273,7 +264,6 @@ class LikeMessageView(APIView):
         
 
 class ListMessageLikesView(APIView):
-    permission_classes = (IsAuthenticated,)
     
     def get(self, request, message_id):
         """
