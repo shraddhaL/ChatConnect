@@ -7,7 +7,7 @@ Steps to setup this project in your local machine:
    ```python
    CREATE SCHEMA `chatapp` ;
    ```
-4. Create and apply migrations
+3. Create and apply migrations
    You can use below commands
    ```python
     python manage.py makemigrations
@@ -27,13 +27,17 @@ Steps to setup this project in your local machine:
     python manage.py makemigrations
     python manage.py migrate
    ```
-6. Load the Data for admin user with below command.
+4. Load the Data for admin user with below command.
    ```python
     python manage.py loaddata initial_data
    ```
-8. To test the application run
+5. To test the application run
    ```python
     python manage.py test
+   ```
+6. To run the application
+   ```python
+    python manage.py runserver
    ```
 
 Admin User:
